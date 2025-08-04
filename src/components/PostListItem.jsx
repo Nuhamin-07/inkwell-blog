@@ -1,5 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function PostListItem() {
-  return <h1>Post List Item</h1>;
+export default function PostListItem(props) {
+  return (
+    <div className="post-view">
+      <img src={props.image} alt={props.alt} className="view-image" />
+      <h2>{props.title}</h2>
+      <p>{props.content}</p>
+      <div className="info-container-view">
+        <p>
+          <b>{props.author}</b>
+        </p>
+        <p>{props.date}</p>
+      </div>
+    </div>
+  );
 }

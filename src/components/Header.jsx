@@ -3,9 +3,13 @@ import { Outlet } from "react-router-dom";
 
 export default function Header() {
   return (
-    <>
-      <h1>Header</h1>
-      <Outlet />
-    </>
+    <div className="container">
+      <header className="header">
+        <h1>InkWell</h1>
+      </header>
+      <main className="main">
+        <Outlet />
+      </main>
+    </div>
   );
 }

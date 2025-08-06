@@ -57,12 +57,16 @@
 }
 
 .header {
-  background-color: #fff;
+  background-color: #03fccf;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   padding: 0.25em 0;
+}
+
+.main-header {
+  color: #000;
 }
 
 .main {

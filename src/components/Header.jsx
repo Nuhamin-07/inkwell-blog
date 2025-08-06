@@ -1,11 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 export default function Header() {
   return (
     <div className="container">
       <header className="header">
-        <h1>InkWell</h1>
+        <Link to="/">
+          <h1 className="main-header">InkWell</h1>
+        </Link>
       </header>
       <main className="main">
         <Outlet />

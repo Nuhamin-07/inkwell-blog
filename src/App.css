@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .container h1 {
   padding: 0 2em;
 }
@@ -72,6 +76,27 @@
 .main {
   margin-top: 10em;
 }
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5em 4em;
+}
+.form-element {
+  display: block;
+  width: 40vw;
+  height: 30px;
+  margin: 0.5em 0;
+}
+
+#form-button {
+  margin-top: 2em;
+}
+
+.text-area {
+  height: auto;
+}
 
 @media (max-width: 480px) {
   .post-container {
@@ -79,5 +104,15 @@
     display: 100%;
     align-items: center;
     padding: 0;
+  }
+
+  /* .form-container {
+    margin: 0 0.25;
+  } */
+
+  .form-element {
+    width: 70vw;
+    height: 30px;
+    margin: 0;
   }
 }

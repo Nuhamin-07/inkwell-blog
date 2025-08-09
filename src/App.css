@@ -62,6 +62,9 @@
 
 .header {
   background-color: #03fccf;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
@@ -69,8 +72,14 @@
   padding: 0.25em 0;
 }
 
-.main-header {
+.main-header,
+.new-post-link {
   color: #000;
+}
+
+.new-post-link {
+  margin-right: 2em;
+  font-weight: bold;
 }
 
 .main {

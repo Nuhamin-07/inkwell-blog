@@ -2,7 +2,6 @@ import React from "react";
 import { TextField, Button } from "@mui/material";
 
 export default function PostForm() {
-  const [data, setData] = React.useState();
   const [dataArray, setDataArray] = React.useState([]);
 
   function handleSubmit(e) {
@@ -17,8 +16,6 @@ export default function PostForm() {
       author: formData.get("author"),
       blogContent: formData.get("blog-content"),
     };
-
-    setData(newData);
 
     const updatedArray = [...dataArray, newData];
     setDataArray(updatedArray);

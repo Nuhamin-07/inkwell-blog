@@ -5,12 +5,12 @@ import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
 import PostListItem from "./components/PostListItem";
 import PostView from "./components/PostView";
-import { data } from "./data";
 import "./App.css";
 
 const PostContext = createContext();
 
 export default function App() {
+  const data = JSON.parse(localStorage.getItem("post"));
   return (
     <PostContext.Provider value={data}>
       <BrowserRouter>

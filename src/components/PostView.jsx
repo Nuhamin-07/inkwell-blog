@@ -7,7 +7,7 @@ export default function PostView() {
   const viewPost = useContext(PostContext);
   const { id } = useParams();
 
-  const post = viewPost.find((p) => p.id === parseInt(id));
+  const post = viewPost.find((p) => p.id === id);
 
   if (!post) {
     return <h2>Post not found</h2>;
@@ -17,9 +17,8 @@ export default function PostView() {
     <PostListItem
       id={post.id}
       title={post.title}
-      content={post.content}
-      image={post.image}
-      alt={post.alt}
+      content={post.blogContent}
+      image={post.imageUrl}
       author={post.author}
       date={post.date}
     />

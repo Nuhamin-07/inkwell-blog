@@ -1,8 +1,16 @@
 import React from "react";
 import { TextField, Button } from "@mui/material";
+import { v4 as uuidv4 } from "uuid";
 
 export default function PostForm() {
   const [dataArray, setDataArray] = React.useState([]);
+
+  React.useEffect(() => {
+    const storedPosts = localStorage.getItem("post");
+    if (storedPosts) {
+      setDataArray(JSON.parse(storedPosts));
+    }
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -10,11 +18,13 @@ export default function PostForm() {
     const formData = new FormData(form);
 
     const newData = {
+      id: uuidv4(),
       title: formData.get("title"),
       summary: formData.get("summary"),
       imageUrl: formData.get("image-url"),
       author: formData.get("author"),
       blogContent: formData.get("blog-content"),
+      date: new Date().toLocaleDateString(),
     };
 
     const updatedArray = [...dataArray, newData];
@@ -23,6 +33,8 @@ export default function PostForm() {
 
     localStorage.setItem("post", JSON.stringify(updatedArray));
   }
+
+  console.log(JSON.parse(localStorage.getItem("post")));
   return (
     <div className="form-container">
       <form id="post-form" onSubmit={handleSubmit}>

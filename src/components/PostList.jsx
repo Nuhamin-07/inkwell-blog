@@ -21,7 +21,7 @@ export default function PostList() {
           </div>
         </div>
         <div className="img-container">
-          <img src={item.image} alt={item.alt} />
+          <img src={item.imageUrl} />
         </div>
       </div>
     );

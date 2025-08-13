@@ -5,20 +5,19 @@ import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
 import PostListItem from "./components/PostListItem";
 import PostView from "./components/PostView";
+import { savePosts, loadPosts } from "./data";
+
 import "./App.css";
 
 const PostContext = createContext();
 
 export default function App() {
-  const [posts, setPosts] = React.useState([]);
+  const [posts, setPosts] = React.useState(loadPosts());
 
   React.useEffect(() => {
-    const storedPosts = localStorage.getItem("post");
-    if (storedPosts) {
-      setPosts(JSON.parse(storedPosts));
-    }
-  }, []);
-  console.log(posts);
+    savePosts(posts);
+  }, [posts]);
+
   return (
     <PostContext.Provider value={{ posts, setPosts }}>
       <BrowserRouter>

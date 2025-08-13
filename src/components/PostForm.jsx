@@ -1,18 +1,10 @@
 import React from "react";
 import { TextField, Button } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
+import { PostContext } from "../App";
 
 export default function PostForm() {
-  const [posts, setPosts] = React.useState(
-    JSON.parse(localStorage.getItem("post")) || []
-  );
-
-  React.useEffect(() => {
-    const storedPosts = localStorage.getItem("post");
-    if (storedPosts) {
-      setPosts(JSON.parse(storedPosts));
-    }
-  }, []);
+  const { posts, setPosts } = React.useContext(PostContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,14 +21,11 @@ export default function PostForm() {
       date: new Date().toLocaleDateString(),
     };
 
-    const updatedPosts = [...posts, newPost];
-    setPosts(updatedPosts);
-    localStorage.setItem("post", JSON.stringify(updatedPosts));
+    setPosts([...posts, newPost]);
 
-    e.currentTarget.reset();
+    form.reset();
   }
 
-  console.log(JSON.parse(localStorage.getItem("post")));
   return (
     <div className="form-container">
       <form id="post-form" onSubmit={handleSubmit}>

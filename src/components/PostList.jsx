@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { PostContext } from "../App";
 
 export default function PostList() {
-  const newArr = JSON.parse(localStorage.getItem("post"));
-  return newArr?.map((item) => {
+  const { posts } = React.useContext(PostContext);
+
+  if (!posts || posts.length === 0) {
+    return <p>No posts yet.</p>;
+  }
+  return posts.map((item) => {
     return (
       <div className="post-container" key={item.id}>
         <div className="inner-container">

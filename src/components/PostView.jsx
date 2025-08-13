@@ -5,8 +5,7 @@ import PostListItem from "./PostListItem";
 
 export default function PostView() {
   const { id } = useParams();
-
-  const posts = JSON.parse(localStorage.getItem("post")) || [];
+  const { posts } = React.useContext(PostContext);
 
   const post = posts.find((p) => p.id === id);
 

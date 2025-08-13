@@ -3,10 +3,17 @@ import { Link } from "react-router-dom";
 import { PostContext } from "../App";
 
 export default function PostList() {
-  const { posts } = React.useContext(PostContext);
+  const { posts, setPosts } = React.useContext(PostContext);
+
+  function handleDelete(id) {
+    if (window.confirm("Are you sure you want to delete this post?")) {
+      const updatedPosts = posts.filter((p) => p.id !== id);
+      setPosts(updatedPosts);
+    }
+  }
 
   if (!posts || posts.length === 0) {
-    return <p>No posts yet.</p>;
+    return <h2>No posts yet.</h2>;
   }
   return posts.map((item) => {
     return (
@@ -22,6 +29,12 @@ export default function PostList() {
             </p>
             <p>{item.date}</p>
             <Link to={`/post/${item.id}`}>See More</Link>
+          </div>
+          <div className="cta-button">
+            <Link to={`edit-post/${item.id}`}>
+              <button>Edit</button>
+            </Link>
+            <button onClick={() => handleDelete(item.id)}>Delete</button>
           </div>
         </div>
         <div className="img-container">

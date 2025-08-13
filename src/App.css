@@ -107,6 +107,12 @@
   height: auto;
 }
 
+.cta-button {
+  margin-top: 1em;
+  display: flex;
+  gap: 1em;
+}
+
 @media (max-width: 480px) {
   .post-container {
     flex-direction: column;

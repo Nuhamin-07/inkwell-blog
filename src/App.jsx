@@ -26,7 +26,7 @@ export default function App() {
             <Route index element={<PostList />} />
             <Route path="new-post" element={<PostForm />} />
             <Route path="post/:id" element={<PostView />} />
-            <Route path="edit-post/:id" element={<PostView />} />
+            <Route path="edit-post/:id" element={<PostForm />} />
           </Route>
         </Routes>
       </BrowserRouter>

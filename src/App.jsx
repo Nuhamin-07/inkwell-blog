@@ -10,9 +10,17 @@ import "./App.css";
 const PostContext = createContext();
 
 export default function App() {
-  const data = JSON.parse(localStorage.getItem("post"));
+  const [posts, setPosts] = React.useState([]);
+
+  React.useEffect(() => {
+    const storedPosts = localStorage.getItem("post");
+    if (storedPosts) {
+      setPosts(JSON.parse(storedPosts));
+    }
+  }, []);
+  console.log(posts);
   return (
-    <PostContext.Provider value={data}>
+    <PostContext.Provider value={{ posts, setPosts }}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Header />}>

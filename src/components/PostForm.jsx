@@ -3,12 +3,14 @@ import { TextField, Button } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 
 export default function PostForm() {
-  const [dataArray, setDataArray] = React.useState([]);
+  const [posts, setPosts] = React.useState(
+    JSON.parse(localStorage.getItem("post")) || []
+  );
 
   React.useEffect(() => {
     const storedPosts = localStorage.getItem("post");
     if (storedPosts) {
-      setDataArray(JSON.parse(storedPosts));
+      setPosts(JSON.parse(storedPosts));
     }
   }, []);
 
@@ -17,7 +19,7 @@ export default function PostForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const newData = {
+    const newPost = {
       id: uuidv4(),
       title: formData.get("title"),
       summary: formData.get("summary"),
@@ -27,11 +29,11 @@ export default function PostForm() {
       date: new Date().toLocaleDateString(),
     };
 
-    const updatedArray = [...dataArray, newData];
-    setDataArray(updatedArray);
-    form.reset();
+    const updatedPosts = [...posts, newPost];
+    setPosts(updatedPosts);
+    localStorage.setItem("post", JSON.stringify(updatedPosts));
 
-    localStorage.setItem("post", JSON.stringify(updatedArray));
+    e.currentTarget.reset();
   }
 
   console.log(JSON.parse(localStorage.getItem("post")));

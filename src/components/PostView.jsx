@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { PostContext } from "../App";
 import PostListItem from "./PostListItem";
 
 export default function PostView() {
-  const viewPost = useContext(PostContext);
   const { id } = useParams();
 
-  const post = viewPost.find((p) => p.id === id);
+  const posts = JSON.parse(localStorage.getItem("post")) || [];
+
+  const post = posts.find((p) => p.id === id);
 
   if (!post) {
     return <h2>Post not found</h2>;

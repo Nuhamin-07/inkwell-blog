@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { PostContext } from "../App";
 
 export default function PostList() {
-  const listContext = useContext(PostContext);
-  const newArr = listContext.map((item) => {
+  const newArr = JSON.parse(localStorage.getItem("post"));
+  return newArr?.map((item) => {
     return (
       <div className="post-container" key={item.id}>
         <div className="inner-container">
@@ -26,6 +25,4 @@ export default function PostList() {
       </div>
     );
   });
-
-  return newArr;
 }

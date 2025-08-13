@@ -27,6 +27,7 @@ export default function App() {
             <Route path="new-post" element={<PostForm />} />
             <Route path="post/:id" element={<PostView />} />
             <Route path="edit-post/:id" element={<PostForm />} />
+            <Route path="*" element={<h2>No Page Found</h2>} />
           </Route>
         </Routes>
       </BrowserRouter>

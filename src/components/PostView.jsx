@@ -19,6 +19,7 @@ export default function PostView() {
       title={post.title}
       content={post.blogContent}
       image={post.imageUrl}
+      alt={post.title}
       author={post.author}
       date={post.date}
     />

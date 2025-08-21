@@ -44,6 +44,7 @@ export default function PostForm() {
         p.id === id ? { ...p, ...formData } : p
       );
       setPosts(updatedPosts);
+      window.alert("Your post updated successfully!");
     } else {
       const newPost = {
         id: uuidv4(),
@@ -51,6 +52,7 @@ export default function PostForm() {
         date: new Date().toLocaleDateString(),
       };
       setPosts([...posts, newPost]);
+      window.alert("You added new post successfully!");
     }
 
     navigate("/");
@@ -85,7 +87,7 @@ export default function PostForm() {
           value={formData.imageUrl}
           onChange={handleChange}
         />
-
+        <br />
         <label htmlFor="author">Author</label>
         <input
           className="form-element"
@@ -94,7 +96,7 @@ export default function PostForm() {
           value={formData.author}
           onChange={handleChange}
         />
-
+        <br />
         <label htmlFor="blog-content">Blog Content</label>
         <textarea
           className="form-element text-area"
@@ -104,10 +106,12 @@ export default function PostForm() {
           onChange={handleChange}
           rows={4}
         />
-
-        <button className="form-element" id="form-button" type="submit">
-          {id ? "Update Post" : "Add Post"}
-        </button>
+        <input
+          className="form-element"
+          id="form-button"
+          type="submit"
+          value={id ? "Update Post" : "Add Post"}
+        />
       </form>
     </div>
   );

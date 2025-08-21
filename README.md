@@ -15,3 +15,4 @@ These features includes:
 - I used dynamic routing for the post detail, for updating or editing the existed post and deleting a post using their id.
 - I used media query for making the web app responsive across all screen sizes and also I used relative units as much as possible to make the reponsiveness easier.
 - I also added a confirmation message with window.alert to let the used know they added or updated a post successfully. And also a confirmation message sith window.confirm to make sure and take action for the delete operation weather to delete the post or not.
+- Here is my netlify url where I deployed the project: https://nuhamin-inkwell-esc.netlify.app/

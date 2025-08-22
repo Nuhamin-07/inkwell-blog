@@ -6,7 +6,7 @@ export default function PostListItem(props) {
     <div className="post-view">
       <img src={props.image} alt={props.alt} className="view-image" />
       <h2>{props.title}</h2>
-      <p>{props.content}</p>
+      <p className="content-p">{props.content}</p>
       <div className="info-container-view">
         <p>
           <b>{props.author}</b>

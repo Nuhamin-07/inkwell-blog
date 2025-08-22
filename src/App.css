@@ -16,6 +16,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 98.5vw;
 }
 
 .info-container-view {
@@ -58,6 +60,8 @@
 
 .post-view p {
   max-width: 70%;
+  align-content: center !important;
+  margin: 1em auto;
 }
 
 .header {

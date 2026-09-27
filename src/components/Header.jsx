@@ -23,7 +23,6 @@ export default function Header() {
               </svg>
             </div>
             <span className="brand-name">InkWell</span>
-            <span className="brand-badge">SaaS Blog</span>
           </Link>
 
           {/* Search bar */}

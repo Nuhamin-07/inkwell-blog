@@ -1,3 +1,10 @@
+import {
+  DEFAULT_PLACEHOLDER_IMAGE,
+  TECH_PLACEHOLDER_IMAGE,
+  DESIGN_PLACEHOLDER_IMAGE,
+  WRITING_PLACEHOLDER_IMAGE
+} from "./utils/imageUtils";
+
 // Key used in localStorage
 const postKey = "post";
 
@@ -8,7 +15,7 @@ const DEFAULT_POSTS = [
     summary: "Explore modern design systems, fluid layouts, and state management techniques that power production-grade web applications.",
     author: "Alex Morgan",
     date: "9/25/2026",
-    imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+    imageUrl: TECH_PLACEHOLDER_IMAGE,
     blogContent: `## Introduction to Modern Web Application Design
 
 Building scalable, beautiful web applications requires a thoughtful combination of **solid architecture**, **accessible design systems**, and **responsive layouts**. In this article, we'll dive deep into best practices for React 19 applications.
@@ -39,7 +46,7 @@ Stay tuned for more updates as we continue expanding our web engineering toolkit
     summary: "A practical guide to creating adaptive UI themes, glassmorphism cards, and fluid grid layouts with CSS native variables.",
     author: "Elena Rostova",
     date: "9/20/2026",
-    imageUrl: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
+    imageUrl: DESIGN_PLACEHOLDER_IMAGE,
     blogContent: `## Crafting Polished SaaS Dashboards
 
 User interface design has evolved rapidly. Today's web users expect **instant responsiveness**, **dark mode compatibility**, and **silky micro-interactions**.
@@ -72,7 +79,7 @@ Dark mode isn't just an aesthetic choice — it reduces eye strain during long w
     summary: "Learn how markdown rendering transforms simple text into beautifully formatted technical documentation and blog posts.",
     author: "Marcus Chen",
     date: "9/15/2026",
-    imageUrl: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80",
+    imageUrl: WRITING_PLACEHOLDER_IMAGE,
     blogContent: `## Why Markdown Wins for Content Creators
 
 Markdown remains the gold standard for developer-focused blogging platforms. It decouples **content creation** from **presentation markup**.
@@ -99,13 +106,19 @@ export function loadPosts() {
   try {
     const stored = localStorage.getItem(postKey);
     if (stored !== null) {
-      return JSON.parse(stored);
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed.map((p, idx) => ({
+          ...p,
+          imageUrl: p.imageUrl || [TECH_PLACEHOLDER_IMAGE, DESIGN_PLACEHOLDER_IMAGE, WRITING_PLACEHOLDER_IMAGE][idx % 3] || DEFAULT_PLACEHOLDER_IMAGE
+        }));
+      }
     }
     savePosts(DEFAULT_POSTS);
     return DEFAULT_POSTS;
   } catch (error) {
     console.error("Error loading posts from localStorage:", error);
-    return [];
+    return DEFAULT_POSTS;
   }
 }
 

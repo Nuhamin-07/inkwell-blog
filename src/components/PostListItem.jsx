@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { DEFAULT_PLACEHOLDER_IMAGE, handleImageError } from "../utils/imageUtils";
 
 export default function PostListItem(props) {
   function getInitials(name) {
@@ -16,7 +17,7 @@ export default function PostListItem(props) {
   const wordCount = props.rawContent ? props.rawContent.trim().split(/\s+/).length : 0;
   const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
-  const defaultHeroImage = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80";
+  const heroImageSrc = props.image || DEFAULT_PLACEHOLDER_IMAGE;
 
   return (
     <div className="post-view-container">
@@ -73,19 +74,14 @@ export default function PostListItem(props) {
         </header>
 
         {/* Hero Featured Cover Image */}
-        {props.image && (
-          <div className="article-hero-image-wrapper">
-            <img
-              src={props.image || defaultHeroImage}
-              alt={props.alt || props.title}
-              className="view-image"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = defaultHeroImage;
-              }}
-            />
-          </div>
-        )}
+        <div className="article-hero-image-wrapper">
+          <img
+            src={heroImageSrc}
+            alt={props.alt || props.title || "Article cover"}
+            className="view-image"
+            onError={(e) => handleImageError(e, DEFAULT_PLACEHOLDER_IMAGE)}
+          />
+        </div>
 
         {/* Article Summary Lead Box */}
         {props.summary && (

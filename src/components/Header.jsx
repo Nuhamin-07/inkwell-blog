@@ -104,7 +104,7 @@ export default function Header() {
       </main>
 
       {/* Footer */}
-      {/* <footer className="footer">
+      <footer className="footer">
         <div className="footer-container">
           <p>© {new Date().getFullYear()} InkWell Blog Platform. Built for developers & readers.</p>
           <div className="footer-links">
@@ -112,7 +112,7 @@ export default function Header() {
             <Link to="/new-post">Write Post</Link>
           </div>
         </div>
-      </footer> */}
+      </footer>
     </div>
   );
 }

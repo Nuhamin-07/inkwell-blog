@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { PostContext } from "../App";
+import { DEFAULT_PLACEHOLDER_IMAGE, handleImageError } from "../utils/imageUtils";
 
 export default function PostList() {
   const { posts, setPosts, searchQuery, setSearchQuery } = useContext(PostContext);
@@ -34,9 +35,6 @@ export default function PostList() {
       .substring(0, 2)
       .toUpperCase();
   }
-
-  // Default image if missing or invalid
-  const defaultCardImage = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80";
 
   return (
     <div className="posts-page-container">
@@ -111,13 +109,10 @@ export default function PostList() {
               <div className="post-card-image-wrapper">
                 <Link to={`/post/${item.id}`} tabIndex="-1">
                   <img
-                    src={item.imageUrl || defaultCardImage}
+                    src={item.imageUrl || DEFAULT_PLACEHOLDER_IMAGE}
                     alt={item.title || "Blog post cover"}
                     className="post-card-image"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = defaultCardImage;
-                    }}
+                    onError={(e) => handleImageError(e, DEFAULT_PLACEHOLDER_IMAGE)}
                   />
                 </Link>
                 <span className="post-card-category">Article</span>

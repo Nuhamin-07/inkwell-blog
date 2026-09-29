@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { PostContext } from "../App";
+import { DEFAULT_PLACEHOLDER_IMAGE, handleImageError } from "../utils/imageUtils";
 
 export default function PostForm() {
   const { posts, setPosts } = useContext(PostContext);
@@ -167,22 +168,17 @@ export default function PostForm() {
           </div>
 
           {/* Image Live Preview */}
-          {formData.imageUrl && (
-            <div className="image-preview-container">
-              <span className="preview-label">Image Preview</span>
-              <img
-                src={formData.imageUrl}
-                alt="Cover preview"
-                className="image-preview-img"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-                onLoad={(e) => {
-                  e.target.style.display = 'block';
-                }}
-              />
-            </div>
-          )}
+          <div className="image-preview-container">
+            <span className="preview-label">
+              {formData.imageUrl ? "Image Preview" : "Default Cover Preview (Auto-Assigned)"}
+            </span>
+            <img
+              src={formData.imageUrl || DEFAULT_PLACEHOLDER_IMAGE}
+              alt="Cover preview"
+              className="image-preview-img"
+              onError={(e) => handleImageError(e, DEFAULT_PLACEHOLDER_IMAGE)}
+            />
+          </div>
 
           {/* Blog Content TextArea */}
           <div className="form-group">
